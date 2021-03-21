@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { AppService } from './app.service';
       database: `${process.env.DATABASE_NAME}_${process.env.ENVIRONMENT}`,
       synchronize: process.env.DATABASE_SYNCHRONIZE == 'true' ? true : false,
     }),
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
