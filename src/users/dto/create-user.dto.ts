@@ -5,15 +5,15 @@ export class CreateUserDto {
   username: string;
 
   @IsNotEmpty()
-  firs_name: string;
+  first_name: string;
 
   @IsNotEmpty()
-  surname: string;
+  last_name: string;
 
   @IsEmail()
   email: string;
 
-  @IsString()
+  @IsString({ always: false })
   password: string;
 
   @IsString()
