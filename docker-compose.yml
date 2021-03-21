@@ -1,0 +1,26 @@
+
+version: '3.5'
+
+services:
+  postgres:
+    container_name: finta_postgres_container
+    image: postgres:12.5
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}_${ENVIRONMENT}
+    volumes:
+      - finta-database-data:/var/lib/postgresql/data
+    ports:
+      - "${DATABASE_PORT}:5432"
+    networks:
+      - finta-database-network
+    restart: unless-stopped
+
+networks:
+  finta-database-network:
+    driver: bridge
+
+volumes:
+  finta-database-data:
+    external: true
